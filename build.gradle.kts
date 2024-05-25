@@ -9,7 +9,7 @@ val kotlinVersion = libs.plugins.kotlin.get().version
 val velocityVersion = libs.velocityApi.get().version
 
 group = "com.velocitypowered"
-version = "$velocityVersion+$kotlinVersion"
+version = "$velocityVersion+kotlin.$kotlinVersion"
 
 repositories {
   mavenLocal()
