@@ -1,12 +1,12 @@
 plugins {
-  kotlin("jvm")
-  kotlin("kapt")
-  kotlin("plugin.serialization")
-  id("com.github.johnrengelman.shadow")
+  alias(libs.plugins.kotlin)
+  alias(libs.plugins.kapt)
+  alias(libs.plugins.serialization)
+  alias(libs.plugins.shadow)
 }
 
-val kotlinVersion: String by project
-val velocityVersion: String by project
+val kotlinVersion = libs.plugins.kotlin.get().version
+val velocityVersion = libs.velocityApi.get().version
 
 group = "com.velocitypowered"
 version = "$velocityVersion+$kotlinVersion"
@@ -19,16 +19,46 @@ repositories {
 }
 
 dependencies {
-  implementation(kotlin("reflect"))
-  implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.1")
-  implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinVersion")
-  implementation("org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:$kotlinVersion")
-  implementation("net.kyori:adventure-extra-kotlin:4.9.3")
+  compileOnly(libs.velocityApi)
+  kapt(libs.velocityApi)
 
-  compileOnly("com.velocitypowered:velocity-api:$velocityVersion")
-  kapt("com.velocitypowered:velocity-api:$velocityVersion")
+  // Kotlin Stdlib
+  implementation(libs.kotlinStdlibJdk8)
+  implementation(libs.kotlinStdlibJdk7)
+
+  // Kotlin Coroutines
+  implementation(libs.kotlinxCoroutinesCore)
+  implementation(libs.kotlinxCoroutinesCoreJvm)
+  implementation(libs.kotlinxCoroutinesJdk8)
+
+  // Kotlin Serialization
+  implementation(libs.kotlinxSerializationCoreJvm)
+  implementation(libs.kotlinxSerializationJsonJvm)
+  implementation(libs.kotlinxSerializationCborJvm)
+
+  // Kotlin
+  implementation(libs.kotlinReflect)
+  implementation(libs.atomicfuJvm)
+  implementation(libs.kotlinxDatetimeJvm)
+
+  // Adventure
+  implementation(libs.adventureExtraKotlin)
 }
 
-tasks.build {
-  dependsOn(tasks.shadowJar.get())
+tasks {
+  build {
+    dependsOn(shadowJar)
+  }
+
+  shadowJar {
+    archiveClassifier.set("")
+  }
+
+  processResources {
+    inputs.property("version", project.version)
+    filesMatching("velocity-plugin.json") {
+      expand("version" to project.version)
+    }
+  }
+
 }

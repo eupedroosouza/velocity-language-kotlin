@@ -1,0 +1,94 @@
+versions:
+  kotlin: 2.0.0
+  kotlinxCoroutines: 1.8.1
+  kotlinxSerialization: 1.6.3
+  shadow: 7.1.2
+  velocity: 3.3.0-SNAPSHOT
+  atomicfu: 0.24.0
+  kotlinxDatetime: 0.6.0
+  adventureExtraKotlin: 4.17.0
+
+dependencies:
+  velocityApi:
+    group: com.velocitypowered
+    name: velocity-api
+    version:
+      ref: velocity
+  kotlinStdlibJdk8:
+    group: org.jetbrains.kotlin
+    name: kotlin-stdlib-jdk8
+    version:
+      ref: kotlin
+  kotlinStdlibJdk7:
+    group: org.jetbrains.kotlin
+    name: kotlin-stdlib-jdk7
+    version:
+      ref: kotlin
+  kotlinReflect:
+    group: org.jetbrains.kotlin
+    name: kotlin-reflect
+    version:
+      ref: kotlin
+  kotlinxCoroutinesCore:
+    group: org.jetbrains.kotlinx
+    name: kotlinx-coroutines-core
+    version:
+      ref: kotlinxCoroutines
+  kotlinxCoroutinesCoreJvm:
+    group: org.jetbrains.kotlinx
+    name: kotlinx-coroutines-core-jvm
+    version:
+      ref: kotlinxCoroutines
+  kotlinxCoroutinesJdk8:
+    group: org.jetbrains.kotlinx
+    name: kotlinx-coroutines-jdk8
+    version:
+      ref: kotlinxCoroutines
+  kotlinxSerializationCoreJvm:
+    group: org.jetbrains.kotlinx
+    name: kotlinx-serialization-core-jvm
+    version:
+      ref: kotlinxSerialization
+  kotlinxSerializationJsonJvm:
+    group: org.jetbrains.kotlinx
+    name: kotlinx-serialization-json-jvm
+    version:
+      ref: kotlinxSerialization
+  kotlinxSerializationCborJvm:
+    group: org.jetbrains.kotlinx
+    name: kotlinx-serialization-cbor-jvm
+    version:
+      ref: kotlinxSerialization
+  atomicfuJvm:
+    group: org.jetbrains.kotlinx
+    name: atomicfu-jvm
+    version:
+      ref: atomicfu
+  kotlinxDatetimeJvm:
+    group: org.jetbrains.kotlinx
+    name: kotlinx-datetime-jvm
+    version:
+      ref: kotlinxDatetime
+  adventureExtraKotlin:
+    group: net.kyori
+    name: adventure-extra-kotlin
+    version:
+      ref: adventureExtraKotlin
+
+plugins:
+  kotlin:
+    id: org.jetbrains.kotlin.jvm
+    version:
+      ref: kotlin
+  kapt:
+    id: org.jetbrains.kotlin.kapt
+    version:
+      ref: kotlin
+  serialization:
+    id: org.jetbrains.kotlin.plugin.serialization
+    version:
+      ref: kotlin
+  shadow:
+    id: com.github.johnrengelman.shadow
+    version:
+      ref: shadow

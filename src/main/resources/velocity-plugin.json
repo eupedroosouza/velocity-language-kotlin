@@ -1,0 +1,8 @@
+{
+  "id": "velocity-language-kotlin",
+  "version": "${version}",
+  "authors": [
+    "Velocity Contributors"
+  ],
+  "main": "com.velocitypowered.api.kt.VelocityPlugin"
+}
