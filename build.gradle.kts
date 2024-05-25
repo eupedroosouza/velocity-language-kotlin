@@ -4,10 +4,11 @@ plugins {
   alias(libs.plugins.serialization)
   alias(libs.plugins.shadow)
   `java-library`
+  `maven-publish`
 }
 
-val kotlinVersion = libs.plugins.kotlin.get().version
-val velocityVersion = libs.velocityApi.get().version
+val kotlinVersion = libs.versions.kotlin.get()
+val velocityVersion = libs.versions.velocity.get()
 
 group = "com.velocitypowered"
 version = "$velocityVersion+kotlin.$kotlinVersion"
@@ -63,4 +64,33 @@ tasks {
     }
   }
 
+}
+
+
+publishing {
+  publications {
+    create<MavenPublication>(project.name) {
+      from(components["java"])
+
+      groupId = "com.velocitypowered"
+      artifactId = project.name
+      version = project.version.toString()
+
+      pom {
+        name.set("velocity-language-kotlin")
+        url.set("https://www.velocitypowered.com")
+        licenses {
+          license {
+            name.set("MIT License")
+            url.set("https://opensource.org/licenses/MIT")
+          }
+        }
+        contributors {
+          contributor {
+            name.set("Velocity Contributors")
+          }
+        }
+      }
+    }
+  }
 }
