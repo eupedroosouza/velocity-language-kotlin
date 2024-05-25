@@ -3,6 +3,7 @@ plugins {
   alias(libs.plugins.kapt)
   alias(libs.plugins.serialization)
   alias(libs.plugins.shadow)
+  `java-library`
 }
 
 val kotlinVersion = libs.plugins.kotlin.get().version
@@ -23,26 +24,27 @@ dependencies {
   kapt(libs.velocityApi)
 
   // Kotlin Stdlib
-  implementation(libs.kotlinStdlibJdk8)
-  implementation(libs.kotlinStdlibJdk7)
+  api(libs.kotlinStdlib)
+  api(libs.kotlinStdlibJdk8)
+  api(libs.kotlinStdlibJdk7)
 
   // Kotlin Coroutines
-  implementation(libs.kotlinxCoroutinesCore)
-  implementation(libs.kotlinxCoroutinesCoreJvm)
-  implementation(libs.kotlinxCoroutinesJdk8)
+  api(libs.kotlinxCoroutinesCore)
+  api(libs.kotlinxCoroutinesCoreJvm)
+  api(libs.kotlinxCoroutinesJdk8)
 
   // Kotlin Serialization
-  implementation(libs.kotlinxSerializationCoreJvm)
-  implementation(libs.kotlinxSerializationJsonJvm)
-  implementation(libs.kotlinxSerializationCborJvm)
+  api(libs.kotlinxSerializationCoreJvm)
+  api(libs.kotlinxSerializationJsonJvm)
+  api(libs.kotlinxSerializationCborJvm)
 
   // Kotlin
-  implementation(libs.kotlinReflect)
-  implementation(libs.atomicfuJvm)
-  implementation(libs.kotlinxDatetimeJvm)
+  api(libs.kotlinReflect)
+  api(libs.atomicfuJvm)
+  api(libs.kotlinxDatetimeJvm)
 
   // Adventure
-  implementation(libs.adventureExtraKotlin)
+  api(libs.adventureExtraKotlin)
 }
 
 tasks {
