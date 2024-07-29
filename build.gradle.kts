@@ -69,10 +69,10 @@ tasks {
 
 publishing {
   repositories {
-    maven("https://maven.pkg.github.com/eupedroosouza/velocity-language-kotlin") {
+    maven("https://maven.cobblemonbrasil.com.br/repository/maven-public/") {
       credentials {
-        username = System.getenv("GITHUB_ACTOR")
-        password = System.getenv("GITHUB_TOKEN")
+        username = System.getenv("MAVEN_USERNAME")
+        password = System.getenv("MAVEN_PASSWORD")
       }
     }
   }
